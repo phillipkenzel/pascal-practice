@@ -2,7 +2,7 @@ program Addition (input, output);
 { Listet alle Zahlen von input bis 30. }
 
   const
-  MAXIMAL = 30;
+  MAXIMAL = 29;
 
   type
   tReihe = 0..MAXIMAL;
@@ -12,8 +12,13 @@ program Addition (input, output);
   i : tReihe;
 
 begin
-  writeln ('Nenne eine Zahl zwischen 0 und 10.');
+  writeln ('Hallo, ich liste dir alle Zahlen bis einschließlich 30. Bitte nenne eine Zahl zwischen 0 und 10.');
   readln (Zahl);
-  for i := 0 to MAXIMAL do
-    writeln (i+1)
+  if Zahl <= 10 then
+  begin
+    for i := Zahl to MAXIMAL do
+      writeln (i+1)
+  end
+  else
+    writeln ('Diese Zahl ist nicht zwischen 0 und 10.')
 end.
