@@ -4,8 +4,17 @@ program Test (input, output);
 	type
 	tIndex = integer;
 	tPerson = record
-				Name : string;
-				Alter : integer
+				Name : record
+						Vorname : string;
+						Nachname : string
+						end;
+				Alter : integer;
+				Adresse : record
+						Strasse : string;
+						Nummer : integer;
+						Postleitzahl : string;
+						Ort : string
+						end;
 			end;
 	tEintrag = array [tIndex] of tPerson;
 
@@ -14,8 +23,13 @@ program Test (input, output);
 	Ergebnis : tPerson;
 	Ordnungsnummer,
 	RufAlter,
+	Hausnummer,
 	Suchwert : tIndex;
 	RufName,
+	RufName2,
+	Strassenname,
+	PLZ,
+	Wohnort,
 	Antwort : string;
 
 begin
@@ -23,23 +37,55 @@ begin
 	readln(Ordnungsnummer);
 	if Ordnungsnummer = 1 then
 	begin
-		writeln('Wie heisst die Person?');
+		writeln('Wie lautet der Vorname der Person?');
 		readln(RufName);
-		NeuerEintrag[Ordnungsnummer].Name := RufName;
+		NeuerEintrag[Ordnungsnummer].Name.Vorname := RufName;
+		writeln('Wie lautet der Nachname der Person?');
+		readln(RufName2);
+		NeuerEintrag[Ordnungsnummer].Name.Nachname := RufName2;
 		writeln('Wie alt ist die Person?');
 		readln(RufAlter);
 		NeuerEintrag[Ordnungsnummer].Alter := RufAlter;
+		writeln('Wo wohnt die Person? Bitte gebe zunaechst den Strassennamen und dann die Hausnummer ein.');
+		readln(Strassenname);
+		NeuerEintrag[Ordnungsnummer].Adresse.Strasse := Strassenname;
+		readln(Hausnummer);
+		NeuerEintrag[Ordnungsnummer].Adresse.Nummer := Hausnummer;
+		writeln('Bitte gebe nun die Postleitzahl und den Wohnort an.');
+		readln(PLZ);
+		NeuerEintrag[Ordnungsnummer].Adresse.Postleitzahl := PLZ;
+		readln(Wohnort);
+		NeuerEintrag[Ordnungsnummer].Adresse.Ort := Wohnort;
+		writeln('...');
+		writeln('...');
+		writeln('...');
 		writeln('Bitte vergebe die naechste Ordnungsnummer. Erinnerung: Mit der Eingabe "0" kannst du den Vorgang abbrechen.');
 		readln(Ordnungsnummer);
 
 		while Ordnungsnummer <> 0 do
 		begin
-			writeln('Wie heisst die Person?');
+			writeln('Wie lautet der Vorname der Person?');
 			readln(RufName);
-			NeuerEintrag[Ordnungsnummer].Name := RufName;
+			NeuerEintrag[Ordnungsnummer].Name.Vorname := RufName;
+			writeln('Wie lautet der Nachname der Person?');
+			readln(RufName2);
+			NeuerEintrag[Ordnungsnummer].Name.Nachname := RufName2;
 			writeln('Wie alt ist die Person?');
 			readln(RufAlter);
 			NeuerEintrag[Ordnungsnummer].Alter := RufAlter;
+			writeln('Wo wohnt die Person? Bitte gebe zunaechst den Strassennamen und dann die Hausnummer ein.');
+			readln(Strassenname);
+			NeuerEintrag[Ordnungsnummer].Adresse.Strasse := Strassenname;
+			readln(Hausnummer);
+			NeuerEintrag[Ordnungsnummer].Adresse.Nummer := Hausnummer;
+			writeln('Bitte gebe nun die Postleitzahl und den Wohnort an.');
+			readln(PLZ);
+			NeuerEintrag[Ordnungsnummer].Adresse.Postleitzahl := PLZ;
+			readln(Wohnort);
+			NeuerEintrag[Ordnungsnummer].Adresse.Ort := Wohnort;
+			writeln('...');
+			writeln('...');
+			writeln('...');
 			writeln('Bitte vergebe die naechste Ordnungsnummer. Erinnerung: Mit der Eingabe "0" kannst du den Vorgang abbrechen.');
 			readln(Ordnungsnummer);
 		end;
@@ -66,8 +112,9 @@ begin
 		writeln('Welche Person suchst du? Bitte gib ihre Ordnungsnummer an. Du kannst diesen Prozess wieder mit Eingabe einer "0" abbrechen.');
 		readln(Suchwert);
 		Ergebnis := NeuerEintrag[Suchwert];
-		writeln('Die Person heisst: ', Ergebnis.Name, '.');
-		writeln('Die Person ist ', Ergebnis.Alter, ' Jahre alt.');
+		writeln('Name: ', Ergebnis.Name.Vorname, ', ', Ergebnis.Name.Nachname, '.');
+		writeln('Alter: ', Ergebnis.Alter, ' Jahre alt.');
+		writeln('Adresse: ', Ergebnis.Adresse.Strasse, ' ', Ergebnis.Adresse.Nummer, ' in ', Ergebnis.Adresse.Postleitzahl, ' ', Ergebnis.Adresse.Ort);
 
 		writeln('Welche weitere Person suchst du? Bitte gib ihre Ordnungsnummer an.');
 		writeln('Denk dran: Wenn du nicht fortfahren willst, einfach eine "0" eingeben.');
@@ -76,8 +123,9 @@ begin
 		while Suchwert <> 0 do
 		begin
 			Ergebnis := NeuerEintrag[Suchwert];
-			writeln('Die Person heisst: ', Ergebnis.Name, '.');
-			writeln('Die Person ist ', Ergebnis.Alter, ' Jahre alt.');
+			writeln('Name: ', Ergebnis.Name.Vorname, ', ', Ergebnis.Name.Nachname, '.');
+			writeln('Alter: ', Ergebnis.Alter, ' Jahre alt.');
+			writeln('Adresse: ', Ergebnis.Adresse.Strasse, ' ', Ergebnis.Adresse.Nummer, ' in ', Ergebnis.Adresse.Postleitzahl, ' ', Ergebnis.Adresse.Ort);
 			writeln('Welche weitere Person suchst du? Bitte gib ihre Ordnungsnummer an.');
 			writeln('Denk dran: Wenn du nicht fortfahren willst, einfach eine "0" eingeben.');
 			readln(Suchwert);
